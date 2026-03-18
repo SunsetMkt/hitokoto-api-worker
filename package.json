@@ -6,6 +6,7 @@
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
     "fetch-sentences": "node scripts/fetch-sentences.mjs",
+    "pack-sentences": "node scripts/pack-sentences.mjs",
     "typecheck": "tsc --noEmit"
   },
   "repository": {
@@ -27,5 +28,8 @@
     "@cloudflare/workers-types": "^4.20260317.1",
     "typescript": "^5.9.3",
     "wrangler": "^4.75.0"
+  },
+  "dependencies": {
+    "msgpackr": "^1.11.9"
   }
 }

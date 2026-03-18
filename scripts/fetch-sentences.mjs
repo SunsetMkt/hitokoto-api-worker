@@ -2,6 +2,7 @@
 /**
  * Downloads sentence data from the hitokoto-osc/sentences-bundle repository
  * and saves it to src/data/ for bundling into the Cloudflare Worker.
+ * After downloading, packs all JSON files into msgpack binary format.
  */
 
 import { createWriteStream, mkdirSync } from 'node:fs';
@@ -53,6 +54,12 @@ async function main() {
   for (const file of FILES) {
     await downloadFile(file);
   }
+  console.log('\nDownload complete. Packing data...\n');
+
+  // Dynamically import the pack script to avoid duplication
+  const packScript = join(__dirname, 'pack-sentences.mjs');
+  await import(packScript);
+
   console.log('\nDone!');
 }
 

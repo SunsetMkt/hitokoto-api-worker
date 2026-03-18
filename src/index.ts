@@ -5,20 +5,21 @@
  * Sentences data: https://github.com/hitokoto-osc/sentences-bundle
  */
 
-import categoriesData from './data/categories.json';
-import versionData from './data/version.json';
-import sentencesA from './data/sentences/a.json';
-import sentencesB from './data/sentences/b.json';
-import sentencesC from './data/sentences/c.json';
-import sentencesD from './data/sentences/d.json';
-import sentencesE from './data/sentences/e.json';
-import sentencesF from './data/sentences/f.json';
-import sentencesG from './data/sentences/g.json';
-import sentencesH from './data/sentences/h.json';
-import sentencesI from './data/sentences/i.json';
-import sentencesJ from './data/sentences/j.json';
-import sentencesK from './data/sentences/k.json';
-import sentencesL from './data/sentences/l.json';
+import { unpack } from 'msgpackr';
+import categoriesPack from './data/categories.pack';
+import versionPack from './data/version.pack';
+import sentencesPackA from './data/sentences/a.pack';
+import sentencesPackB from './data/sentences/b.pack';
+import sentencesPackC from './data/sentences/c.pack';
+import sentencesPackD from './data/sentences/d.pack';
+import sentencesPackE from './data/sentences/e.pack';
+import sentencesPackF from './data/sentences/f.pack';
+import sentencesPackG from './data/sentences/g.pack';
+import sentencesPackH from './data/sentences/h.pack';
+import sentencesPackI from './data/sentences/i.pack';
+import sentencesPackJ from './data/sentences/j.pack';
+import sentencesPackK from './data/sentences/k.pack';
+import sentencesPackL from './data/sentences/l.pack';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -37,21 +38,34 @@ export interface Sentence {
   length: number;
 }
 
+interface Category {
+  id: number;
+  name: string;
+  desc: string;
+  key: string;
+  created_at: string;
+  updated_at: string;
+  path: string;
+}
+
 // ─── Sentence store ───────────────────────────────────────────────────────────
 
+const categoriesData: Category[] = unpack(new Uint8Array(categoriesPack)) as Category[];
+const versionData = unpack(new Uint8Array(versionPack)) as { bundle_version?: string };
+
 const SENTENCES: Record<string, Sentence[]> = {
-  a: sentencesA as Sentence[],
-  b: sentencesB as Sentence[],
-  c: sentencesC as Sentence[],
-  d: sentencesD as Sentence[],
-  e: sentencesE as Sentence[],
-  f: sentencesF as Sentence[],
-  g: sentencesG as Sentence[],
-  h: sentencesH as Sentence[],
-  i: sentencesI as Sentence[],
-  j: sentencesJ as Sentence[],
-  k: sentencesK as Sentence[],
-  l: sentencesL as Sentence[],
+  a: unpack(new Uint8Array(sentencesPackA)) as Sentence[],
+  b: unpack(new Uint8Array(sentencesPackB)) as Sentence[],
+  c: unpack(new Uint8Array(sentencesPackC)) as Sentence[],
+  d: unpack(new Uint8Array(sentencesPackD)) as Sentence[],
+  e: unpack(new Uint8Array(sentencesPackE)) as Sentence[],
+  f: unpack(new Uint8Array(sentencesPackF)) as Sentence[],
+  g: unpack(new Uint8Array(sentencesPackG)) as Sentence[],
+  h: unpack(new Uint8Array(sentencesPackH)) as Sentence[],
+  i: unpack(new Uint8Array(sentencesPackI)) as Sentence[],
+  j: unpack(new Uint8Array(sentencesPackJ)) as Sentence[],
+  k: unpack(new Uint8Array(sentencesPackK)) as Sentence[],
+  l: unpack(new Uint8Array(sentencesPackL)) as Sentence[],
 };
 
 const VALID_CATEGORIES = Object.keys(SENTENCES);
@@ -220,7 +234,7 @@ function handleStatus(): Response {
       status: 200,
       message: 'OK',
       data: {
-        bundle_version: (versionData as { bundle_version?: string }).bundle_version ?? 'unknown',
+        bundle_version: versionData.bundle_version ?? 'unknown',
         categories: categoryStats,
         total,
       },
