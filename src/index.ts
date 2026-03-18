@@ -139,7 +139,8 @@ function sentenceResponse(
   if (encode === 'js') {
     // Returns a self-executing script that injects the hitokoto text into the DOM
     const hitokoto = JSON.stringify(sentence.hitokoto);
-    const selector = select.replace(/'/g, "\\'");
+    // Escape backslashes first, then single quotes to prevent selector injection
+    const selector = select.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
     body = `(function hitokoto(){var hitokoto=${hitokoto};var dom=document.querySelector('${selector}');Array.isArray(dom)?dom[0].innerText=hitokoto:dom.innerText=hitokoto;})()`;
   } else if (encode === 'text') {
     body = sentence.hitokoto;
