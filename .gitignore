@@ -1,3 +1,6 @@
+# Wrangler local state (local dev server cache)
+.wrangler/
+
 # Logs
 logs
 *.log

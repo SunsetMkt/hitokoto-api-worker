@@ -1,0 +1,10 @@
+// Wrangler configuration for hitokoto-api-worker
+// See: https://developers.cloudflare.com/workers/wrangler/configuration/
+{
+  "name": "hitokoto-api-worker",
+  "main": "src/index.ts",
+  // Set to a recent date to opt into new Cloudflare Workers behaviours
+  "compatibility_date": "2024-09-23",
+  // The worker runs in the Cloudflare global network (not Node.js)
+  "compatibility_flags": []
+}
