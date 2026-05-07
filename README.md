@@ -18,9 +18,12 @@ GET /
 | ------------ | ------ | ----------- | -------------------------------------------------------------------------------------------- |
 | `c`          | string | (all)       | Category key(s). Can be specified multiple times: `?c=a&c=b`. See [Categories](#categories). |
 | `encode`     | string | `json`      | Response format: `json`, `js`, or `text`.                                                    |
+| `callback`   | string | (none)      | Callback function name for JSONP support. Wraps the response in `;callback(text);`.          |
 | `select`     | string | `.hitokoto` | CSS selector used by the `js` encoder to inject text into the DOM.                           |
 | `min_length` | number | `0`         | Minimum sentence length (characters).                                                        |
 | `max_length` | number | `30`        | Maximum sentence length (characters). Range: 0–10000.                                        |
+
+`charset` is not available. Cloudflare Workers supports UTF-8 only.
 
 #### Response (JSON)
 
@@ -55,6 +58,9 @@ curl "https://<your-worker>.workers.dev/?encode=js&select=.hitokoto"
 
 # Sentences between 10 and 25 characters from anime or comic categories
 curl "https://<your-worker>.workers.dev/?c=a&c=b&min_length=10&max_length=25"
+
+# JSONP callback example
+curl "https://<your-worker>.workers.dev/?callback=myCallback"
 ```
 
 ### Other endpoints

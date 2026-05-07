@@ -151,6 +151,7 @@ function sentenceResponse(
   sentence: Sentence,
   encode: string,
   select: string,
+  callback?: string,
 ): Response {
   let body: string;
 
@@ -165,6 +166,11 @@ function sentenceResponse(
   } else {
     // json (default)
     body = JSON.stringify(sentence);
+  }
+
+  // Apply callback wrapper if provided
+  if (callback) {
+    body = `;${callback}(${JSON.stringify(body)});`;
   }
 
   return new Response(body, {
@@ -215,6 +221,9 @@ function handleHitokoto(url: URL): Response {
   // Parse CSS selector (used only in js mode)
   const select = params.get("select") ?? ".hitokoto";
 
+  // Parse callback parameter
+  const callback = params.get("callback");
+
   // Pick a random sentence
   const sentence = pickSentence(categories, minLength, maxLength);
 
@@ -222,7 +231,7 @@ function handleHitokoto(url: URL): Response {
     return errorResponse(404, "很抱歉，没有句子符合长度区间。");
   }
 
-  return sentenceResponse(sentence, encode, select);
+  return sentenceResponse(sentence, encode, select, callback);
 }
 
 function handleStatus(): Response {
