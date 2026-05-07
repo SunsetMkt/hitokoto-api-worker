@@ -1,6 +1,6 @@
 {
   "name": "hitokoto-api-worker",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Cloudflare Workers implementation of Hitokoto API",
   "scripts": {
     "dev": "wrangler dev",
@@ -9,7 +9,9 @@
     "pack-sentences": "node scripts/pack-sentences.mjs",
     "typecheck": "tsc --noEmit",
     "format": "prettier . --check",
-    "format:fix": "prettier . --write"
+    "format:fix": "prettier . --write",
+    "ncu": "npm-check-updates",
+    "ncu:fix": "npm-check-updates -u"
   },
   "repository": {
     "type": "git",
@@ -27,12 +29,13 @@
   },
   "homepage": "https://github.com/SunsetMkt/hitokoto-api-worker#readme",
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20260317.1",
+    "@cloudflare/workers-types": "^4.20260507.1",
+    "npm-check-updates": "^22.1.1",
     "prettier": "^3.8.3",
-    "typescript": "^5.9.3",
-    "wrangler": "^4.75.0"
+    "typescript": "^6.0.3",
+    "wrangler": "^4.88.0"
   },
   "dependencies": {
-    "msgpackr": "^1.11.9"
+    "msgpackr": "^2.0.1"
   }
 }
