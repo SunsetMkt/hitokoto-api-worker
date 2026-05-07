@@ -8,5 +8,5 @@
   // Enable Node.js compatibility for msgpackr and other npm packages
   "compatibility_flags": ["nodejs_compat"],
   // Treat .pack files as binary Data modules (imported as ArrayBuffer)
-  "rules": [{ "type": "Data", "globs": ["**/*.pack"] }]
+  "rules": [{ "type": "Data", "globs": ["**/*.pack"] }],
 }

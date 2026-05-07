@@ -7,7 +7,9 @@
     "deploy": "wrangler deploy",
     "fetch-sentences": "node scripts/fetch-sentences.mjs",
     "pack-sentences": "node scripts/pack-sentences.mjs",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "format": "prettier . --check",
+    "format:fix": "prettier . --write"
   },
   "repository": {
     "type": "git",
@@ -26,6 +28,7 @@
   "homepage": "https://github.com/SunsetMkt/hitokoto-api-worker#readme",
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20260317.1",
+    "prettier": "^3.8.3",
     "typescript": "^5.9.3",
     "wrangler": "^4.75.0"
   },

@@ -14,13 +14,13 @@ GET /
 
 #### Query Parameters
 
-| Parameter    | Type   | Default | Description |
-|-------------|--------|---------|-------------|
-| `c`          | string | (all)   | Category key(s). Can be specified multiple times: `?c=a&c=b`. See [Categories](#categories). |
-| `encode`     | string | `json`  | Response format: `json`, `js`, or `text`. |
-| `select`     | string | `.hitokoto` | CSS selector used by the `js` encoder to inject text into the DOM. |
-| `min_length` | number | `0`     | Minimum sentence length (characters). |
-| `max_length` | number | `30`    | Maximum sentence length (characters). Range: 0–10000. |
+| Parameter    | Type   | Default     | Description                                                                                  |
+| ------------ | ------ | ----------- | -------------------------------------------------------------------------------------------- |
+| `c`          | string | (all)       | Category key(s). Can be specified multiple times: `?c=a&c=b`. See [Categories](#categories). |
+| `encode`     | string | `json`      | Response format: `json`, `js`, or `text`.                                                    |
+| `select`     | string | `.hitokoto` | CSS selector used by the `js` encoder to inject text into the DOM.                           |
+| `min_length` | number | `0`         | Minimum sentence length (characters).                                                        |
+| `max_length` | number | `30`        | Maximum sentence length (characters). Range: 0–10000.                                        |
 
 #### Response (JSON)
 
@@ -59,29 +59,29 @@ curl "https://<your-worker>.workers.dev/?c=a&c=b&min_length=10&max_length=25"
 
 ### Other endpoints
 
-| Path | Description |
-|------|-------------|
-| `GET /status` | Bundle version and per-category sentence counts |
-| `GET /categories` | Full list of categories with metadata |
+| Path              | Description                                     |
+| ----------------- | ----------------------------------------------- |
+| `GET /status`     | Bundle version and per-category sentence counts |
+| `GET /categories` | Full list of categories with metadata           |
 
 ---
 
 ## Categories
 
-| Key | Name | Description |
-|-----|------|-------------|
-| `a` | 动画 | Anime |
-| `b` | 漫画 | Comic |
-| `c` | 游戏 | Game |
-| `d` | 文学 | Literature |
-| `e` | 原创 | Original |
-| `f` | 网络 | Internet |
-| `g` | 其他 | Other |
-| `h` | 影视 | Video |
-| `i` | 诗词 | Poem |
+| Key | Name   | Description                      |
+| --- | ------ | -------------------------------- |
+| `a` | 动画   | Anime                            |
+| `b` | 漫画   | Comic                            |
+| `c` | 游戏   | Game                             |
+| `d` | 文学   | Literature                       |
+| `e` | 原创   | Original                         |
+| `f` | 网络   | Internet                         |
+| `g` | 其他   | Other                            |
+| `h` | 影视   | Video                            |
+| `i` | 诗词   | Poem                             |
 | `j` | 网易云 | NetEase Cloud Music hot comments |
-| `k` | 哲学 | Philosophy |
-| `l` | 抖机灵 | Funny |
+| `k` | 哲学   | Philosophy                       |
+| `l` | 抖机灵 | Funny                            |
 
 ---
 
@@ -143,4 +143,3 @@ git commit -m "chore: update sentences bundle"
 ## License
 
 MIT
-
